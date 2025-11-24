@@ -9,13 +9,14 @@ from output_generator import Output_Generator
 
 # Constant variables
 BASE_DIR = os.path.dirname(__file__)
-DATASET_PATH = os.path.join(BASE_DIR, "dataset", "RDW_dataset_sample.csv")
+DATASET = "RDW_dataset_sample.csv"
+DATASET_PATH = os.path.join(BASE_DIR, "dataset", DATASET)
 
 def get_data():
     parser = CSV_Parser()
-    df = parser.csv_to_dataframe(DATASET_PATH)
-
-    print(df.head())
+    data = parser.csv_to_array(DATASET_PATH)
+    data = parser.filter_array(data)
+    print(data)
 
 def main():
     get_data()

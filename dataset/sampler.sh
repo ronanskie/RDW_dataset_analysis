@@ -17,10 +17,11 @@ echo "Filtering, cutting (col 3), and sorting $INPUT_FILE into '$INPUT_FILE_COL3
 
 # Filter on 'Personenauto' or 'Auto' and extract the 3rd column
 awk -F',' '/Personenauto|Auto/ {print $3}' $INPUT_FILE | \
-sort > $INPUT_FILE_COL2
+sort > $INPUT_FILE_COL3
 
-# Remove duplicates to get unique values
-uniq $INPUT_FILE_COL3 > $INPUT_FILE_COL3_UNIQUE
+# Remove duplicates to get unique values of only brands with more than 1000 occurences
+uniq -c $INPUT_FILE_COL3 | \
+awk '$1 >= 1000 { print $2 }' > "$INPUT_FILE_COL3_UNIQUE"
 
 echo "Filtering and sorting complete."
 

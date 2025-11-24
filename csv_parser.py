@@ -15,7 +15,9 @@ class CSV_Parser:
     return: a numpy array containing the csv data
     '''
     def csv_to_array(self, file_path):
-        with warnings.filterwarnings('ignore', category=UserWarning):
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', category=UserWarning)
+
             data = genfromtxt(
                 file_path,
                 delimiter=',',

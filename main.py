@@ -10,7 +10,7 @@ from data_profiler import Data_Profiler
 
 # Constant variables
 BASE_DIR = os.path.dirname(__file__)
-DATASET = "RDW_dataset.csv"
+DATASET = "RDW_dataset_sample.csv"
 CATEGORIES = "Car_Manufacturers.csv"
 DATASET_PATH = os.path.join(BASE_DIR, "dataset", DATASET)
 CATEGORIES_PATH = os.path.join(BASE_DIR, "dataset", CATEGORIES)

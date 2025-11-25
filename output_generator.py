@@ -13,14 +13,12 @@ class Output_Generator:
     data: the 2D array of which a plot will be generated
     '''
     def generate_plot(self, data):
-        df = pd.DataFrame(data, columns=["country", "count"])
-        df = df[df['country'] != 'Unknown']
+        df = pd.DataFrame(data, columns=["name", "count"])
+        df = df[df['name'] != 'Unknown']
         df["count"] = df["count"].astype(int)
 
         url = "https://geojson.xyz/naturalearth-3.3.0/ne_50m_admin_0_countries.geojson"
         geojson = requests.get(url).json()
-
-        df = df.rename(columns={"country": "name"})
 
         df_dict = df.set_index("name")["count"].to_dict()
 
@@ -30,18 +28,18 @@ class Output_Generator:
 
         max_count = df["count"].max()
 
-        map = folium.Map(location=(30, 10), zoom_start=3, tiles="cartodb positron")
+        map = folium.Map(location=(30, 10), zoom_start=3, tiles="cartodb positron no labels")
 
         tooltip = folium.GeoJsonTooltip(
             fields=["name", "count"],
-            aliases=["Country:", "Amount of Vehicles:"],
+            aliases=["Country:", "Amount:"],
             localize=True,
             labels=True,
             sticky=False,
             style=("""
                    background-color: white; 
-                   color: black; font-family: 
-                   sans-serif; 
+                   color: black; 
+                   font-family: "Courier New", Courier, monospace; 
                    font-size: 10pt; 
                    padding: 5px;
                 """

@@ -71,9 +71,12 @@ main(): Calls the functions needed to parse the data and generate the output
 return: Program exits after executing
 '''
 def main():
+    output = Output_Generator()
+
     data_generator, cat_data = get_data() 
     result = get_results(data_generator, cat_data)
 
+    output.generate_plot(result)
     print(result)
 
 main()

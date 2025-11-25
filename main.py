@@ -11,7 +11,7 @@ from data_profiler import Data_Profiler
 # Constant variables
 BASE_DIR = os.path.dirname(__file__)
 DATASET = "RDW_dataset_col3.csv"
-CATEGORIES = "Car_Manufacturers.csv"
+CATEGORIES = "Car_Manufacturers_100.csv"
 DATASET_PATH = os.path.join(BASE_DIR, "dataset", DATASET)
 CATEGORIES_PATH = os.path.join(BASE_DIR, "dataset", CATEGORIES)
 
@@ -77,6 +77,6 @@ def main():
     result = get_results(data_generator, cat_data)
 
     output.generate_plot(result)
-    print(result)
+    print("Plot generated successfully!")
 
 main()

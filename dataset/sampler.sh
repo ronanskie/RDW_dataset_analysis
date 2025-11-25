@@ -21,7 +21,7 @@ sort > $INPUT_FILE_COL3
 
 # Remove duplicates to get unique values of only brands with more than 1000 occurences
 uniq -c $INPUT_FILE_COL3 | \
-awk '$1 >= 1000 { print $2 }' > "$INPUT_FILE_COL3_UNIQUE"
+awk '$1 >= 100 { print $2 }' > "$INPUT_FILE_COL3_UNIQUE"
 
 echo "Filtering and sorting complete."
 

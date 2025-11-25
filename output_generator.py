@@ -13,13 +13,16 @@ class Output_Generator:
     data: the 2D array of which a plot will be generated
     '''
     def generate_plot(self, data):
+        # Convert data to dataframe
         df = pd.DataFrame(data, columns=["name", "count"])
         df = df[df['name'] != 'Unknown']
         df["count"] = df["count"].astype(int)
 
+        # Add countries layer
         url = "https://geojson.xyz/naturalearth-3.3.0/ne_50m_admin_0_countries.geojson"
         geojson = requests.get(url).json()
 
+        # Join dataframe with geojson data
         df_dict = df.set_index("name")["count"].to_dict()
 
         for feature in geojson["features"]:
@@ -28,8 +31,10 @@ class Output_Generator:
 
         max_count = df["count"].max()
 
+        # Create map
         map = folium.Map(location=(30, 10), zoom_start=3, tiles="cartodb positron no labels")
 
+        # Set tooltip style and fields
         tooltip = folium.GeoJsonTooltip(
             fields=["name", "count"],
             aliases=["Country:", "Amount:"],
@@ -46,7 +51,8 @@ class Output_Generator:
             )
         )
 
-        folium.Choropleth(
+        # Set choropleth
+        choro = folium.Choropleth(
             geo_data=geojson,
             data=df,
             columns=['name', 'count'],
@@ -57,18 +63,21 @@ class Output_Generator:
             nan_fill_color="white",
             bins=[0, 25000, 200000, 400000, 800000, 1600000, 2400000, max_count],
             highlight=True
-        ).add_to(map)
+        )
 
+        # Remove default legend
+        for key in choro._children:
+            if key.startswith('color_map'):
+                del(choro._children[key])
+                
+        choro.add_to(map)
+
+        # Add tooltip
         folium.GeoJson(
             geojson,
             tooltip=tooltip,
             style_function=lambda x: {"fillOpacity": 0, "weight": 0}
         ).add_to(map)
-
-        # Remove default legend
-        for key in list(map._children):
-            if key.startswith('color_map_'):
-                del map._children[key]
 
         # Custom HTML for legend
         legend = """
@@ -93,7 +102,7 @@ class Output_Generator:
 
                     <div style="display:flex; align-items:center; margin-bottom:0px;">
                         <div style="background:#f7fcf5;width:20px;height:20px;margin-right:8px;"></div>
-                        <span>0 - 25k</span>
+                        <span>1 - 25k</span>
                     </div>
 
                     <div style="display:flex; align-items:center; margin-bottom:0px;">
@@ -123,7 +132,7 @@ class Output_Generator:
 
                     <div style="display:flex; align-items:center; margin-bottom:0px;">
                         <div style="background:#006d2c;width:20px;height:20px;margin-right:8px;"></div>
-                        <span>2.4M - Max</span>
+                        <span>> 2.4M</span>
                     </div>
                 </div>
             </div>

@@ -208,4 +208,5 @@ __marimo__/
 
 # Datasets
 dataset/*.csv
-!dataset/Car_Manufacturers.csv
+!dataset/Car_Manufacturers_1000.csv
+!dataset/Car_Manufacturers_100.csv

@@ -2,9 +2,17 @@
 # Generate output like plots from dataframes
 
 # Import libraries
+import os
+import time
 import folium
 import pandas as pd
 import requests
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+
+# Constant variables
+BASE_DIR = os.path.dirname(__file__)
+OUTPUT_PATH = os.path.join(BASE_DIR, "output")
 
 class Output_Generator:
 
@@ -62,7 +70,7 @@ class Output_Generator:
             line_opacity=0.2,
             nan_fill_color="white",
             bins=[0, 25000, 200000, 400000, 800000, 1600000, 2400000, max_count],
-            highlight=True
+            highlight=False
         )
 
         # Remove default legend
@@ -85,7 +93,8 @@ class Output_Generator:
                 position: fixed; 
                 bottom: 50px; 
                 left: 50px; 
-                width: 150px; 
+                width: 8%;
+                min-width: 120px; 
                 background-color: white;
                 border: 2px solid #444;
                 padding: 10px;
@@ -141,4 +150,5 @@ class Output_Generator:
         map.get_root().html.add_child(folium.Element(legend))
 
         # Save the map to an HTML file
-        map.save("output_map.html")
+        map.save(os.path.join(OUTPUT_PATH, "output_map.html"))
+

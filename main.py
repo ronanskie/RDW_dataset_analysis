@@ -77,6 +77,7 @@ def main():
     result = get_results(data_generator, cat_data)
 
     output.generate_plot(result)
-    print("Plot generated successfully!")
+
+    print("Map generated successfully!")
 
 main()

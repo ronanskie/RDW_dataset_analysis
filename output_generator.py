@@ -3,7 +3,6 @@
 
 # Import libraries
 import os
-import time
 import folium
 import pandas as pd
 import requests

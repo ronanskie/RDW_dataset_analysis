@@ -12,11 +12,11 @@ The Dutch vehicle authority (RDW) keeps track of all the vehicles that are regis
 
 In recent times, there has been a lot of discussion about Chinese car brands entering the European market at very low prices compared to their European counterparts. This made me wonder to what extent these Chinese car manufacturers have already penetrated the Dutch market and how this compares to manufacturers from other countries. Therefore, I decided to use the RDW vehicle registration dataset to create an overview of the countries of origin of cars in the Netherlands.
 
-I wrote a blog post on my website about the analysis that I did on this dataset, you can read it by clicking the link below:
+I wrote a blog post on my website about the analysis that I did on this dataset, you can read it by clicking the link below.
 
-    ```bash
-    https://www.ronansmedeman.nl/blog_rdw_analysis
-    ```
+```bash
+https://www.ronansmedeman.nl/blog_rdw_analysis
+```
 
 ---
 
@@ -26,9 +26,9 @@ This section explains which directories you can find in the template and how you
 
 ### Directories
 
-* **RDW_dataset_analysis:** The main project folder, contains two directories and general files like the README.md and the **Python** scripts. 
-* **dataset:** Contains a **Shell** script that prepares the dataset for analysis. Also contains a CSV file with the country of origin of car manufacturers. The RDW dataset should also be placed here, not included in the repository by default.
-* **output:** This is where the Python scripts place the output (i.e. the interactive world map made with the **Folium** library). 
+* **RDW_dataset_analysis:** The main project folder, contains two directories and general files like the README.md and the Python scripts. 
+* **dataset:** Contains a Shell script that prepares the dataset for analysis. Also contains a CSV file with the country of origin of car manufacturers. The RDW dataset should also be placed here, not included in the repository by default.
+* **output:** This is where the Python scripts place the output (i.e. the interactive world map made with the Folium library). 
 
 ---
 
@@ -38,7 +38,8 @@ If you want to run this code yourself, you can follow the instructions below.
 
 ### Prerequisites
 
-This code was built on **Python 3.13.3**. It is recommended to also use this version while running it yourself, but it is likely to work with different versions. You will also need to have **pip** installed to install the libraries from the "requirements.txt" file. The following instructions also assume you are using an **Ubuntu** based operating system, however, this is not a requirement for the code to work. If you are using Windows or MacOS you might need to use a different command in some steps. If something is not working you can google for the correct alternative command on your operating system.
+This code was built on **Python 3.13.3**. It is recommended to also use this version while running it yourself, but it is likely to work with different versions. 
+You will also need to have **pip** installed to install the libraries from the "requirements.txt" file. The following instructions also assume you are using an **Ubuntu** based operating system, however, this is not a requirement for the code to work. If you are using Windows or MacOS you might need to use a different command in some steps. If something is not working you can google for the correct alternative command on your operating system.
 
 ### How to run
 
